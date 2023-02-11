@@ -123,8 +123,8 @@ def callback():
         auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
     )
 
-    print(token_response)
-    print("=============")
+    print(token_response.json())
+    print("======TOKEN JSON=======")
 
     # Parse the tokens!
     client.parse_request_body_response(json.dumps(token_response.json()))
