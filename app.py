@@ -136,12 +136,15 @@ def callback():
     print(userinfo_endpoint)
     print("=============")
     uri, headers, body = client.add_token(userinfo_endpoint)
+    print(uri, headers, body)
     userinfo_response = requests.get(uri, headers=headers, data=body)
 
     # We want to make sure their email is verified.
     # The user authenticated with Google, authorized our
     # app, and now we've verified their email through Google!
     if userinfo_response.json().get("email_verified"):
+        print("---------------------")
+        print(userinfo_response.json())
         unique_id = userinfo_response.json()["sub"]
         users_email = userinfo_response.json()["email"]
         picture = userinfo_response.json()["picture"]
