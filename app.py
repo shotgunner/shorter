@@ -107,10 +107,15 @@ def callback():
         code=code,
     )
     print(request.url)
+    print("=============")
     print(request.base_url)
+    print("=============")
     print(code)
+    print("=============")
     print(token_endpoint)
+    print("=============")
     print(token_url, headers, body)
+    print("=============")
     token_response = requests.post(
         token_url,
         headers=headers,
@@ -119,6 +124,7 @@ def callback():
     )
 
     print(token_response)
+    print("=============")
 
     # Parse the tokens!
     client.parse_request_body_response(json.dumps(token_response.json()))
@@ -128,6 +134,7 @@ def callback():
     # including their Google Profile Image and Email
     userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
     print(userinfo_endpoint)
+    print("=============")
     uri, headers, body = client.add_token(userinfo_endpoint)
     userinfo_response = requests.get(uri, headers=headers, data=body)
 
