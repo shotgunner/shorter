@@ -106,12 +106,19 @@ def callback():
         redirect_url=request.base_url,
         code=code,
     )
+    print(request.url)
+    print(request.base_url)
+    print(code)
+    print(token_endpoint)
+    print(token_url, headers, body)
     token_response = requests.post(
         token_url,
         headers=headers,
         data=body,
         auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
     )
+
+    print(token_response)
 
     # Parse the tokens!
     client.parse_request_body_response(json.dumps(token_response.json()))
@@ -120,6 +127,7 @@ def callback():
     # from Google that gives you user's profile information,
     # including their Google Profile Image and Email
     userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
+    print(userinfo_endpoint)
     uri, headers, body = client.add_token(userinfo_endpoint)
     userinfo_response = requests.get(uri, headers=headers, data=body)
 
